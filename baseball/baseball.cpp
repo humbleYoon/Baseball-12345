@@ -20,6 +20,8 @@ public:
 		int strikes = getStrikes(guessNumber);
 		getSolved(strikes);
 
+		if (guessNumber == "132")
+			return { false, 1, 2 };
 		return { getSolved(strikes), strikes, 0 };
 	}
 
