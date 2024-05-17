@@ -18,11 +18,22 @@ public:
 		assertIllegalArgument(guessNumber);
 
 		int strikes = getStrikes(guessNumber);
-		getSolved(strikes);
 
-		if (guessNumber == "132")
-			return { false, 1, 2 };
-		return { getSolved(strikes), strikes, 0 };
+		return { getSolved(strikes), strikes, getBalls(guessNumber)};
+	}
+
+	int getBalls(const string& guessNumber) {
+		int balls = 0;
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				if (i == j) continue;
+				if (guessNumber[i] == question[j]) {
+					balls++;
+					break;
+				}
+			}
+		}
+		return balls;
 	}
 
 	bool getSolved(int strikes) {
