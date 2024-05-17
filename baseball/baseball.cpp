@@ -16,7 +16,26 @@ public:
 
 	GuessResult guess(const string& guessNumber) {
 		assertIllegalArgument(guessNumber);
-		return { true, 3, 0 };
+
+		int strikes = getStrikes(guessNumber);
+		getSolved(strikes);
+
+		return { getSolved(strikes), strikes, 0 };
+	}
+
+	bool getSolved(int strikes) {
+		if (strikes == 3)
+			return true;
+		return false;
+	}
+
+	int getStrikes(const string& guessNumber) {
+		int strikes = 0;
+		for (int i = 0; i < 3; i++) {
+			if (guessNumber[i] == question[i])
+				strikes++;
+		}
+		return strikes;
 	}
 
 	void assertIllegalArgument(const string& guessNumber) {
